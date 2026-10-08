@@ -1,0 +1,10 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const context={window:{},URL};vm.createContext(context);
+vm.runInContext(fs.readFileSync('extension/content/erp-patterns.js','utf8'),context);
+const detect=context.window.detectERPPlatform;
+assert.equal(detect('https://demo.oraclecloud.com/payables/CreateInvoice').platform,'oracle_fusion');
+assert.equal(detect('https://demo.sap.com/sap/bc/').platform,'sap');
+assert.equal(detect('https://demo.workday.com/d/task/payroll').platform,'workday');
+for(const url of ['https://evil.example/?next=demo.oraclecloud.com','https://demo.oraclecloud.com.evil.example/','not-a-url','file:///oracle.com'])assert.equal(detect(url),null);
+assert.equal(context.window.resolveERPContext('https://demo.oraclecloud.com/payables/CreateInvoice').module,'Payables');
+console.log('8 ERP hostname/context checks passed');
