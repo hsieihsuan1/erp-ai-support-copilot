@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "ERP Support Copilot - Local Demo",
+  "version": "0.1.0",
+  "description": "Synthetic ERP support demo. Only runs on the local sandbox page.",
+  "content_scripts": [{
+    "matches": ["http://127.0.0.1:8002/demo/erp*"],
+    "js": ["content/erp-patterns.js", "content/inject.js"],
+    "run_at": "document_idle"
+  }]
+}
