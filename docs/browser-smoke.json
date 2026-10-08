@@ -1,0 +1,10 @@
+{
+  "browser": "Playwright Chromium with actual unpacked MV3 extension",
+  "extension_injection": true,
+  "cited_alpha_runbook": true,
+  "mock_servicenow": true,
+  "mock_jira": true,
+  "beta_fixture_isolated": true,
+  "html_input_as_text": true,
+  "url": "http://127.0.0.1:8002/demo/erp"
+}
