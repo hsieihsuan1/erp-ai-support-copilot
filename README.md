@@ -40,7 +40,7 @@ The original private project uses Gemini, Oracle Autonomous Database vector retr
 
 ## Quick start
 
-Python 3.10+ is required. Tested locally on Python 3.10; the included CI configuration targets Python 3.11, but has not run on GitHub yet.
+Python 3.10+ is required. Tested locally on Python 3.10; GitHub Actions also passed on Python 3.11.
 
 ```bash
 python -m venv .venv
