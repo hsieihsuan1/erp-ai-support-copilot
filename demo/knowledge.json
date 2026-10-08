@@ -1,0 +1,5 @@
+[
+  {"id":"alpha-ap-001","tenant":"alpha","module":"Payables","title":"DEMO-AP-001: invoice validation","text":"For synthetic error DEMO-AP-001: 1. Review the purchase order reference in the sandbox invoice. 2. Compare the synthetic invoice quantity with the received quantity. 3. Ask the sandbox approver to review any mismatch. Do not alter a real invoice based on this demo."},
+  {"id":"beta-ap-001","tenant":"beta","module":"Payables","title":"DEMO-AP-001: beta approval policy","text":"Beta-only synthetic procedure for DEMO-AP-001: send the sandbox invoice to the beta review queue. This fixture must never appear in alpha results."},
+  {"id":"alpha-po-001","tenant":"alpha","module":"Procurement","title":"DEMO-PO-002: missing sandbox approver","text":"For DEMO-PO-002: check that the sandbox approval group is selected. Ask human support to review the synthetic assignment. Do not bypass approvals."}
+]
