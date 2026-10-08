@@ -1,6 +1,7 @@
 """Conservative release checks, not proof that every secret pattern is known."""
 from pathlib import Path
 import re
+import subprocess
 
 root = Path(__file__).parents[1]
 patterns = {
@@ -22,7 +23,11 @@ for path in root.rglob('*'):
     for url in re.findall(r'https?://[^\s<>"\x27)]+',text):
         if not url.startswith(('http://127.0.0.1:', 'http://localhost:', 'https://demo.', 'https://evil.example')):
             findings.append(f'{path.relative_to(root)}: non-demo URL requires review')
-if (root/'.git').exists():findings.append('Unexpected imported git history')
+# Normal clones and Actions checkouts have .git metadata. It is not release content.
+if (root / '.git').exists():
+    tracked = subprocess.run(['git', '-C', str(root), 'ls-files'], check=True, capture_output=True, text=True).stdout.splitlines()
+    if any('.git' in Path(name).parts for name in tracked):
+        findings.append('Tracked Git metadata in release content')
 print(f'Scanned {count} text files. Findings: {len(findings)}')
 for result in findings:print(result)
 raise SystemExit(bool(findings))
